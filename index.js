@@ -150,6 +150,11 @@ module.exports = function(source) {
 		var resolve = function(request, type, callback) {
 			var contexts = [loaderApi.context];
 
+			// Must be absolute path
+			if (query.rootPath) {
+				contexts = contexts.concat([query.rootPath]);
+			}
+
 			// Any additional helper dirs will be added to the searchable contexts
 			if (query.helperDirs) {
 				contexts = contexts.concat(query.helperDirs);
